@@ -37,7 +37,6 @@ public class OrderController {
         if (errors.hasErrors()) {
             return "order";
         }
-
         log.info("此时的Order是：" + order);
         orderRepo.save(order);
         sessionStatus.setComplete();

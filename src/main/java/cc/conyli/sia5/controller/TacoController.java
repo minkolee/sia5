@@ -56,13 +56,13 @@ public class TacoController {
         return ingredientsByTypeMapper;
     }
 
-    //给Model设置新的Taco
+    //访问/taco/** 时给Model设置新的Taco
     @ModelAttribute("taco")
     private Taco setNewTaco() {
         return new Taco();
     }
 
-    //访问/taco/form的时候，给Session设置上order
+    //访问/taco/** 时给Session设置上order
     @ModelAttribute("order")
     private Order setNewOrder() {
         return new Order();

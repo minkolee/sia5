@@ -63,9 +63,6 @@ public class Order implements Serializable {
     }
 
     public void addTaco(Taco taco) {
-//        if (tacos == null) {
-//            tacos = new ArrayList<>();
-//        }
         this.tacos.add(taco);
     }
 

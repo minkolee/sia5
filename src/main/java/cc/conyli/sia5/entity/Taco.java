@@ -40,9 +40,6 @@ public class Taco implements Serializable {
 
     //添加一个方法用于给自己的外键添加关联对象
     public void addIngredient(Ingredient ingredient) {
-        if (ingredients == null) {
-            ingredients = new ArrayList<>();
-        }
         ingredients.add(ingredient);
     }
 
