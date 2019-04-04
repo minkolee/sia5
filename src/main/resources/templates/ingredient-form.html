@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="#" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">食材列表</h1>
+    <form action="#" th:action="@{/ingredient/process}" th:object="${ingredient}" method="post">
+        <div class="form-group">
+            <label for="name">Name</label><input class="form-control" type="text" th:field="*{name}">
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('name')}"
+                  th:errors="*{name}">Name Error</span>
+        </div>
+
+        <div class="form-group">
+            <label for="type">Type</label><input class="form-control" type="text" th:field="*{type}">
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('type')}"
+                  th:errors="*{type}">Type Error</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+    <br>
+    <p><a th:href="@{/}" class="btn btn-info">返回首页</a></p>
+
+</div>
+
+<script th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
