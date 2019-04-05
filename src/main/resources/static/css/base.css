@@ -1,3 +1,13 @@
 .validationError {
     color: red;
 }
+
+.user {
+    position: relative;
+    top: 0;
+    right: 30%;
+    color: darkblue;
+    font-size: 30px;
+    margin: 0;
+    padding: 10px;
+}

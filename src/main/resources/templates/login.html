@@ -5,18 +5,17 @@
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="#" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" href="#" th:href="@{/css/base.css}">
 
 </head>
 <body>
 <div class="container">
-    <h1 class="text-center">主页</h1>
-        <p><a class="btn btn-primary" th:href="@{/ingredient/form}">添加食材</a></p>
-        <p><a class="btn btn-primary" th:href="@{/taco/form}">添加Taco</a></p>
-        <p><a class="btn btn-primary" th:href="@{/register}">注册新用户</a></p>
-    <form th:action="@{/logout}" method="post">
-        <button type="submit" class="btn btn-primary">登出</button>
+    <h1 class="text-center">登录</h1>
+    <form th:action="@{/auth}" method="post">
+        <label>User name: <input type="text" name="user"/></label>
+        <label>Password: <input type="password" name="pswd"/></label>
+        <input type="submit" value="Login">
     </form>
+    <p><a th:href="@{/}" class="btn btn-info">返回首页</a></p>
 </div>
 
 

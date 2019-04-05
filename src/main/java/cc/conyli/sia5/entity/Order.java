@@ -52,10 +52,13 @@ public class Order implements Serializable {
     @Column(name = "placed_at")
     private Date placed_at;
 
-
     @ManyToMany
     @JoinTable(name = "taco_order", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "taco_id"))
     private List<Taco> tacos = new ArrayList<>();
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @PrePersist
     private void placedAt() {
@@ -64,6 +67,10 @@ public class Order implements Serializable {
 
     public void addTaco(Taco taco) {
         this.tacos.add(taco);
+    }
+
+    public void addUser(User user) {
+        this.user = user;
     }
 
 }

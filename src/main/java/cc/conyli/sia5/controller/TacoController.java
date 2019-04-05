@@ -5,9 +5,11 @@ import cc.conyli.sia5.dao.TacoRepo;
 import cc.conyli.sia5.entity.Ingredient;
 import cc.conyli.sia5.entity.Order;
 import cc.conyli.sia5.entity.Taco;
+import cc.conyli.sia5.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -69,7 +71,8 @@ public class TacoController {
     }
 
     @GetMapping("/form")
-    public String showForm(Model model) {
+    public String showForm(Model model, @AuthenticationPrincipal User user) {
+        model.addAttribute("user", user);
         return "taco-form";
     }
 
