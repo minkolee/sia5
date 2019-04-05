@@ -26,7 +26,7 @@ import java.util.Map;
 @Slf4j
 @Controller
 @RequestMapping("/taco")
-@SessionAttributes(value = {"mapper", "order"})
+@SessionAttributes(value = {"order", "user"})
 public class TacoController {
 
     private TacoRepo tacoRepo;
@@ -76,6 +76,7 @@ public class TacoController {
         return "taco-form";
     }
 
+    //原来修改了显示用户名之后，如果产生验证错误，则缺失用户对象，必须设置到SessionAttributes里。
     @PostMapping("/process")
     public String processForm(@ModelAttribute("taco") @Valid Taco taco, Errors errors, @ModelAttribute("order") Order order) {
         if (errors.hasErrors()) {

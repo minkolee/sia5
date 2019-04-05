@@ -42,13 +42,11 @@ public class OrderController {
 
     @PostMapping("/process")
     public String processForm(@ModelAttribute("order") @Valid Order order, Errors errors,
-                              SessionStatus sessionStatus) {
+                              SessionStatus sessionStatus, @AuthenticationPrincipal User user) {
         if (errors.hasErrors()) {
             return "order";
         }
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) authentication.getPrincipal();
         order.addUser(user);
         orderRepo.save(order);
         sessionStatus.setComplete();
