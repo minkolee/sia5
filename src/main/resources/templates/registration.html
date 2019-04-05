@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="#" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="#" th:href="@{/css/base.css}">
+
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">用户注册</h1>
+    <form action="#" th:action="@{/register}" method="post" th:object="${user}">
+        <div class="form-group">
+            <label>用户名
+                <input class="form-control" type="text" th:field="*{username}" placeholder="">
+                <span class="validationError" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</span>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>密码
+                <input class="form-control" type="password" th:field="*{password}" placeholder="">
+                <span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</span>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>重复输入密码
+                <input class="form-control" type="password" th:field="*{confirm_password}" placeholder="">
+                <span class="validationError" th:if="${#fields.hasErrors('confirm_password')}" th:errors="*{confirm_password}">Error</span>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>全名
+                <input class="form-control" type="text" th:field="*{fullname}" placeholder="">
+                <span class="validationError" th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}">Error</span>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>街道
+                <input class="form-control" type="text" th:field="*{street}" placeholder="">
+                <span class="validationError" th:if="${#fields.hasErrors('street')}" th:errors="*{street}">Error</span>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>城市
+                <input class="form-control" type="text" th:field="*{city}" placeholder="">
+                <span class="validationError" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Error</span>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>省份
+                <input class="form-control" type="text" th:field="*{state}" placeholder="">
+                <span class="validationError" th:if="${#fields.hasErrors('state')}" th:errors="*{state}">Error</span>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>邮编
+                <input class="form-control" type="text" th:field="*{zip}" placeholder="">
+                <span class="validationError" th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}">Error</span>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>手机号码
+                <input class="form-control" type="text" th:field="*{phonenumber}" placeholder="">
+                <span class="validationError" th:if="${#fields.hasErrors('phonenumber')}" th:errors="*{phonenumber}">Error</span>
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">提交</button>
+
+    </form>
+</div>
+
+
+
+<script th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

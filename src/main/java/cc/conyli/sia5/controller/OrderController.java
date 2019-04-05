@@ -37,9 +37,9 @@ public class OrderController {
         if (errors.hasErrors()) {
             return "order";
         }
-        log.info("此时的Order是：" + order);
         orderRepo.save(order);
         sessionStatus.setComplete();
+        log.info("保存至数据库的Order是：" + order);
         return "redirect:/";
     }
 

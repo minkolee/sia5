@@ -5,6 +5,7 @@ import cc.conyli.sia5.entity.Order;
 import cc.conyli.sia5.entity.Taco;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,10 +22,12 @@ import java.util.List;
 public class CancelController {
 
     private TacoRepo tacoRepo;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public CancelController(TacoRepo tacoRepo) {
+    public CancelController(TacoRepo tacoRepo, PasswordEncoder passwordEncoder) {
         this.tacoRepo = tacoRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -37,6 +40,15 @@ public class CancelController {
         }
         sessionStatus.setComplete();
         log.info("Session 清除完毕");
+
+        log.info("----------------------以下测试密码--------------------------");
+        log.info(passwordEncoder.encode("fflym0709"));
+        if (passwordEncoder.matches("fflym0709","$2a$04$TrqGLKU3fhuyjVfRJnzpUuiY1acHjkt9.bAKgFS/KBaUeEfc11qCy")) {
+            log.info("$2a$04$TrqGLKU3fhuyjVfRJnzpUuiY1acHjkt9.bAKgFS/KBaUeEfc11qCy fflym0709 匹配成功");
+        } else {
+        log.info(" $2a$04$TrqGLKU3fhuyjVfRJnzpUuiY1acHjkt9.bAKgFS/KBaUeEfc11qCy fflym0709 匹配失败");
+        }
+
         return "redirect:/";
     }
 }

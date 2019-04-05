@@ -79,12 +79,13 @@ public class TacoController {
             return "taco-form";
         }
         tacoRepo.save(taco);
-        log.info("成功提交的taco是：" + taco);
+        log.info("成功保存的的taco是：" + taco);
         order.addTaco(taco);
-        log.info("现在的Order是：" + order);
+        log.info("现在内存中的Order是：" + order);
         return "redirect:/order/form";
     }
 
+    //初始化去掉两边的Trim
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
