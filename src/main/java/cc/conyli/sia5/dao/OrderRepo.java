@@ -13,4 +13,6 @@ public interface OrderRepo extends JpaRepository<Order, Integer> {
     List<Order> findOrdersByUser(User user);
 
 
+    List<Order> findOrdersByUserOrderByIdDesc(User user);
+
 }
