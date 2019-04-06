@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/auth")
                 .usernameParameter("user")
                 .passwordParameter("pswd")
-                .defaultSuccessUrl("/taco/form", true)
+                .defaultSuccessUrl("/taco/form")
                 .and()
                 .logout()
                     .logoutSuccessUrl("/login");

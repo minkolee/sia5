@@ -1,7 +1,7 @@
 package cc.conyli.sia5.controller;
 
+import cc.conyli.sia5.config.OrderProps;
 import cc.conyli.sia5.dao.OrderRepo;
-import cc.conyli.sia5.dao.UserRepo;
 import cc.conyli.sia5.entity.Order;
 import cc.conyli.sia5.entity.User;
 import lombok.extern.slf4j.Slf4j;
@@ -25,12 +25,13 @@ import javax.validation.Valid;
 @SessionAttributes("order")
 public class OrderController {
 
+    private OrderProps orderProps;
+
     private OrderRepo orderRepo;
-    private UserRepo userRepo;
 
     @Autowired
-    public OrderController(OrderRepo orderRepo, UserRepo userRepo) {
-        this.userRepo = userRepo;
+    public OrderController(OrderRepo orderRepo, OrderProps orderProps) {
+        this.orderProps = orderProps;
         this.orderRepo = orderRepo;
     }
 
@@ -56,8 +57,8 @@ public class OrderController {
 
     @GetMapping("/list")
     public String orderList(@AuthenticationPrincipal User user, Model model) {
-        Pageable pageable = PageRequest.of(0, 20);
-        model.addAttribute("orders", orderRepo.findOrdersByUserOrderByIdDesc(user));
+        Pageable pageable = PageRequest.of(orderProps.getPage(), orderProps.getPageSize());
+        model.addAttribute("orders", orderRepo.findByUserOrderByPlacedAtDesc(user, pageable));
         model.addAttribute("user", user);
         return "orderlist";
     }

@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "taco.ingredients.list",
+      "type": "java.lang.Integer",
+      "description": "Sets the maximum ingredient length."
+    }
+  ]
+}

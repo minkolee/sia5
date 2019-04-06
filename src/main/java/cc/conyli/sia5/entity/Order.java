@@ -50,7 +50,7 @@ public class Order implements Serializable {
     private String cc_cvv;
 
     @Column(name = "placed_at")
-    private Date placed_at;
+    private Date placedAt;
 
     @ManyToMany
     @JoinTable(name = "taco_order", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "taco_id"))
@@ -62,7 +62,7 @@ public class Order implements Serializable {
 
     @PrePersist
     private void placedAt() {
-        this.placed_at = new Date();
+        this.placedAt = new Date();
     }
 
     public void addTaco(Taco taco) {
