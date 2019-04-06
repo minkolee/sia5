@@ -7,17 +7,17 @@ import cc.conyli.sia5.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
-import org.springframework.security.core.Authentication;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 @Slf4j
@@ -53,6 +53,19 @@ public class OrderController {
         log.info("保存至数据库的Order是：" + order);
         return "redirect:/";
     }
+
+    @GetMapping("/list")
+    public String orderList(@AuthenticationPrincipal User user, Model model) {
+        Pageable pageable = PageRequest.of(0, 20);
+        model.addAttribute("orders", orderRepo.findOrdersByUser(user));
+        model.addAttribute("user", user);
+        return "orderlist";
+    }
+
+
+
+
+
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
